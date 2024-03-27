@@ -14,38 +14,41 @@ const StudentForm = () => {
         const {name, value} = e.target;
         setData ((prev) => {
             return {...prev, [name]: value}
-        })
+        }) 
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         // Form Validation
-        if (data.firstName.length === 0) {
-            toast.error("First name field cannot be empty", {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 3000,
-            });
-        } else if (data.lastName.length === 0) {
-            toast.error("Last name field cannot be empty", {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 3000,
-            });
-        } else if (data.gender.length === 0) {
-            toast.error("Gender field cannot be empty", {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 3000,
-            });
-        } else {
-            axios.post("http://localhost:4000/api/student/addStudent", data)
+        // if (data.firstName.length === 0) {
+        //     toast.error("First name field cannot be empty", {
+        //         position: toast.POSITION.TOP_RIGHT,
+        //         autoClose: 3000,
+        //     });
+        // } else if (data.lastName.length === 0) {
+        //     toast.error("Last name field cannot be empty", {
+        //         position: toast.POSITION.TOP_RIGHT,
+        //         autoClose: 3000,
+        //     });
+        // } else if (data.gender.length === 0) {
+        //     toast.error("Gender field cannot be empty", {
+        //         position: toast.POSITION.TOP_RIGHT,
+        //         autoClose: 3000,
+        //     });
+        // } else {
+            axios.post("http://localhost:4000/api/students/addStudent", data)
             .then(res => {
                 setData([...data, res.data]);
     
                 toast.success("New student successfully added", {
                     position: toast.POSITION.TOP_RIGHT,
                     autoClose: 3000,
+                }).catch (err => {
+                    console.log(err);
                 })
+
             })
-    }}
+    }
 
     return (
         <div>
