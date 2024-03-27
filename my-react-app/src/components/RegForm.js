@@ -3,9 +3,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const RegForm = () => {
     const [data, setData] = useState({
-        name: '',
-        email: '',
-        password: ''
+        regName: '',
+        regEmail: '',
+        regPassword: ''
     });
 
     const handleChange = (e) => {
@@ -43,15 +43,15 @@ const RegForm = () => {
                 <div className="w-25 p-3 mx-auto">
                     <div className="form-group">
                         <label className="mb-1">Name</label>
-                        <input type="text" className="form-control" name="name" value={data.name} onChange={handleChange}/><br/>
+                        <input type="text" className="form-control" name="name" value={data.regName} onChange={handleChange}/><br/>
                     </div>
                     <div className="form-group">
                         <label className="mb-1">Email</label>
-                        <input type="email" className="form-control" name="email" value={data.email} onChange={handleChange}/><br/>
+                        <input type="email" className="form-control" name="email" value={data.regEmail} onChange={handleChange}/><br/>
                     </div>
                     <div className="form-group">
                         <label className="mb-1">Password</label>
-                        <input type="password" className="form-control" name="password" value={data.password} onChange={handleChange}/><br/>
+                        <input type="password" className="form-control" name="password" value={data.regPassword} onChange={handleChange}/><br/>
                     </div>
                     <div className="form-check mt-3 text-center">
                         <button type="submit" className="btn btn-primary justify-content-center">Register</button>
