@@ -38,7 +38,7 @@ const StudentForm = () => {
         // } else {
             axios.post("http://localhost:4000/api/students/addStudent", data)
             .then(res => {
-                setData([...data, res.data]);
+                setData([res.data]);
     
                 toast.success("New student successfully added", {
                     position: toast.POSITION.TOP_RIGHT,

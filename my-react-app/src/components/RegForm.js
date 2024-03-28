@@ -18,17 +18,17 @@ const RegForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Form Validation
-        if (data.name.length === 0) {
+        if (data.regName.length === 0) {
             toast.error("Name field cannot be empty", {
                 position: toast.POSITION.TOP_RIGHT,
                 autoClose: 3000,
             });
-        } else if (data.email.length === 0) {
+        } else if (data.regEmail.length === 0) {
             toast.error("Email field cannot be empty", {
                 position: toast.POSITION.TOP_RIGHT,
                 autoClose: 3000,
             });
-        } else if (data.password.length === 0) {
+        } else if (data.regPassword.length === 0) {
             toast.error("Password field cannot be empty", {
                 position: toast.POSITION.TOP_RIGHT,
                 autoClose: 3000,
