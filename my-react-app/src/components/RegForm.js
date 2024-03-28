@@ -1,6 +1,7 @@
 import React , { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 const RegForm = () => {
     const [data, setData] = useState({
         regName: '',
@@ -34,8 +35,18 @@ const RegForm = () => {
                 autoClose: 3000,
             });
         } else {
+        axios.post("http://localhost:4000/api/registration/addReg", data)
+        .then(res => {
+            setData(res.data);
 
-    }}
+            toast.success("New User has been Registered", {
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 3000,
+            })
+        }).catch (err => {
+            console.log(err)
+    })  
+}}
 
     return (
         <div>
@@ -43,15 +54,15 @@ const RegForm = () => {
                 <div className="w-25 p-3 mx-auto">
                     <div className="form-group">
                         <label className="mb-1">Name</label>
-                        <input type="text" className="form-control" name="name" value={data.regName} onChange={handleChange}/><br/>
+                        <input type="text" className="form-control" name="regName" value={data.regName} onChange={handleChange}/><br/>
                     </div>
                     <div className="form-group">
                         <label className="mb-1">Email</label>
-                        <input type="email" className="form-control" name="email" value={data.regEmail} onChange={handleChange}/><br/>
+                        <input type="email" className="form-control" name="regEmail" value={data.regEmail} onChange={handleChange}/><br/>
                     </div>
                     <div className="form-group">
                         <label className="mb-1">Password</label>
-                        <input type="password" className="form-control" name="password" value={data.regPassword} onChange={handleChange}/><br/>
+                        <input type="password" className="form-control" name="regPassword" value={data.regPassword} onChange={handleChange}/><br/>
                     </div>
                     <div className="form-check mt-3 text-center">
                         <button type="submit" className="btn btn-primary justify-content-center">Register</button>

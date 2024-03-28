@@ -5,8 +5,8 @@ import axios from "axios";
 
 const StudentForm = () => {
     const [data, setData] = useState({
-        firstName: '',
-        lastName: '',
+        first_name: '',
+        last_name: '',
         gender: ''
     });
 
@@ -20,22 +20,22 @@ const StudentForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Form Validation
-        // if (data.firstName.length === 0) {
-        //     toast.error("First name field cannot be empty", {
-        //         position: toast.POSITION.TOP_RIGHT,
-        //         autoClose: 3000,
-        //     });
-        // } else if (data.lastName.length === 0) {
-        //     toast.error("Last name field cannot be empty", {
-        //         position: toast.POSITION.TOP_RIGHT,
-        //         autoClose: 3000,
-        //     });
-        // } else if (data.gender.length === 0) {
-        //     toast.error("Gender field cannot be empty", {
-        //         position: toast.POSITION.TOP_RIGHT,
-        //         autoClose: 3000,
-        //     });
-        // } else {
+        if (data.first_name.length === 0) {
+            toast.error("First name field cannot be empty", {
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 3000,
+            });
+        } else if (data.last_name.length === 0) {
+            toast.error("Last name field cannot be empty", {
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 3000,
+            });
+        } else if (data.gender.length === 0) {
+            toast.error("Gender field cannot be empty", {
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 3000,
+            });
+        } else {
             axios.post("http://localhost:4000/api/students/addStudent", data)
             .then(res => {
                 setData([res.data]);
@@ -43,12 +43,11 @@ const StudentForm = () => {
                 toast.success("New student successfully added", {
                     position: toast.POSITION.TOP_RIGHT,
                     autoClose: 3000,
+                })
                 }).catch (err => {
                     console.log(err);
-                })
-
             })
-    }
+    }}
 
     return (
         <div>
@@ -56,11 +55,11 @@ const StudentForm = () => {
                 <div className="w-25 p-3 mx-auto">
                     <div className="form-group">
                         <label className="mb-1">First Name</label>
-                        <input type="text" className="form-control" name="firstName" value={data.firstName} onChange={handleChange}/><br/>
+                        <input type="text" className="form-control" name="first_name" value={data.first_name} onChange={handleChange}/><br/>
                     </div>
                     <div className="form-group">
                         <label className="mb-1">Last Name</label>
-                        <input type="text" className="form-control" name="lastName" value={data.lastName} onChange={handleChange}/><br/>
+                        <input type="text" className="form-control" name="last_name" value={data.last_name} onChange={handleChange}/><br/>
                     </div>
                     <div className="form-group">
                         <label className="mb-1">Gender</label>

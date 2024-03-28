@@ -1,17 +1,19 @@
 import React , { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 const CourseForm = () => {
     const [data, setData] = useState({
         courseName: '',
     });
 
     const handleChange = (e) => {
-        const {courseName, value} = e.target;
-        setData ((prev) => {
-            return {...prev, [courseName]: value}
-        })
-    }
+        const { name, value } = e.target;
+        setData((prev) => {
+            return { ...prev, [name]: value };
+        });
+    };
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -21,9 +23,18 @@ const CourseForm = () => {
                 position: toast.POSITION.TOP_RIGHT,
                 autoClose: 3000,
             });
-        } else {
+        } else { axios.post("http://localhost:4000/api/course/addCourse", data)
+        .then(res => {
+            setData(res.data);
 
-    }}
+            toast.success("New course successfully added", {
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 3000,
+            })
+        }).catch (err => {
+            console.log(err)
+    })  
+}}
 
     return (
         <div>
@@ -31,7 +42,7 @@ const CourseForm = () => {
                 <div className="w-25 p-3 mx-auto">
                     <div className="form-group">
                         <label className="mb-1">Course Name</label>
-                        <input type="text" className="form-control" name="name" value={data.courseName} onChange={handleChange}/><br/>
+                        <input type="text" className="form-control" name="courseName" value={data.courseName} onChange={handleChange}/><br/>
                     </div>
                     <div className="form-check mt-3 text-center">
                         <button type="submit" className="btn btn-primary justify-content-center">Enter Course</button>
