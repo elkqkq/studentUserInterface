@@ -5,7 +5,7 @@ const DisplayStudents = () => {
         const [data, setData] = useState ([])
 
         useEffect(() => {
-            axios.get("http://localhost:4000/api/student/getAllstudent")
+            axios.get("http://localhost:4000/api/students/getAllstudent")
             .then(res => {setData(res.data) })
             .then(err => console.log(err))
         })
